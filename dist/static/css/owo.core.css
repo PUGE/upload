@@ -53,20 +53,246 @@ ul {
 li {
   list-style: none;
 }
+/* Radial Out */
+[o-hover="radial-out"] {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  background: #e1e1e1;
+  transition-property: color;
+  transition-duration: 0.3s;
+}
+[o-hover="radial-out"]:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2098D1;
+  border-radius: 100%;
+  transform: scale(0);
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+[o-hover="radial-out"]:hover, [o-hover="radial-out"]:focus, [o-hover="radial-out"]:active {
+  color: white;
+}
+[o-hover="radial-out:hover"]:before, [o-hover="radial-out:focus"]:before, [o-hover="radial-out:active"]:before {
+  transform: scale(2);
+}
 
-body {
+.login {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.login .login-title-bar {
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  align-items: center;
+}
+
+.login .login-title-bar .back {
+  width: 12px;
+  margin: 13px;
+  display: block;
+}
+
+.login .login-title-bar .register {
+  font-size: 20px;
+  line-height: 45px;
+  padding-right: 10px;
+}
+
+.login .login-title-bar .active {
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+
+.login .button-box {
+  margin-top: 35px;
+}
+
+.login .image-box img {
+  height: 160px;
+  display: block;
+  margin: 40px auto;
+}
+
+.login .hellow-text {
+  color: #5fccff;
+  font-size: 22px;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
+.login .button {
+  background-color: #5fccff;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 84%;
+  margin: 0 auto;
+  border-radius: 25px;
+  display: block;
+  margin-top: 15px;
+}
+
+.login input {
+  border: none;
+  display: block;
+  width: 83%;
+  font-size: 18px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.login .view-login input {
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  padding-left: 17%;
+  display: block;
+  width: 83%;
+  font-size: 18px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.login .view-login input:active {
+  box-shadow: 1px 1px 5px #ccc;
+}
+
+.login .view-login .input-bar {
+  background-color: #f7f8fa;
+  height: 50px;
+  border-radius: 25px;
+  width: 84%;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.login .view-login .input-bar .bar-icon {
+  width: 20px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  bottom: 0;
+  margin: auto;
+}
+
+.login .tool-bar {
+  line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 84%;
+  margin: 0 auto;
+  color: #262626;
+  font-size: 14px;
+}
+
+.login .router {
+  height: calc(100% - 45px);
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login .router [route] {
+  width: 100%;
+  height: 100%;
+}
+
+.login .view-register {
+  width: 100%;
+  height: 100%;
+}
+
+.login .view-register .bg-1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 47vw;
+}
+
+.login .view-register p {
+  line-height: 40px;
+  font-size: 23px;
+  padding-top: 60px;
+  z-index: 99;
+  background-image: url(https://cunchu.site/puge/login/Signup.png);
+  background-size: 91vw;
+  background-repeat: no-repeat;
+  background-position-y: 15px;
+  padding-left: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.login .view-register .register-input {
+  height: 50px;
+  background-color: #f7f7fb;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 0 5%;
+  width: 74%;
+}
+
+.login .view-register .button {
+  background-color: #fa4169;
+}
+
+.login .mini-box {
+  width: 84%;
+  margin: 0 auto;
+}
+
+.login .mini-box .button {
+  background-color: #009fe9;
+  float: right;
+  width: 24%;
+  display: block;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 23px;
+}
+
+.login .mini-box .register-input {
+  float: left;
+  width: 60%;
+  display: block;
+}
+.home body {
   font-family: sans-serif;
   background-color: #eeeeee;
 }
 
-.file-upload {
+.home .file-upload {
   background-color: #ffffff;
   width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.file-upload-btn {
+.home .file-upload-btn {
   width: 100%;
   margin: 0;
   color: #fff;
@@ -81,24 +307,24 @@ body {
   font-weight: 700;
 }
 
-.file-upload-btn:hover {
+.home .file-upload-btn:hover {
   background: #1AA059;
   color: #ffffff;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.file-upload-btn:active {
+.home .file-upload-btn:active {
   border: 0;
   transition: all 0.2s ease;
 }
 
-.file-upload-content {
+.home .file-upload-content {
   display: none;
   text-align: center;
 }
 
-.file-upload-input {
+.home .file-upload-input {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -109,28 +335,28 @@ body {
   cursor: pointer;
 }
 
-.image-upload-wrap {
+.home .image-upload-wrap {
   margin-top: 20px;
   border: 4px dashed #1FB264;
   position: relative;
 }
 
-.image-dropping,
-.image-upload-wrap:hover {
+.home .image-dropping,
+.home .image-upload-wrap:hover {
   background-color: #1FB264;
   border: 4px dashed #ffffff;
 }
 
-.image-title-wrap {
+.home .image-title-wrap {
   padding: 0 15px 15px 15px;
   color: #222;
 }
 
-.drag-text {
+.home .drag-text {
   text-align: center;
 }
 
-.drag-text h3 {
+.home .drag-text h3 {
   font-weight: 100;
   text-transform: uppercase;
   color: #15824B;
@@ -138,14 +364,14 @@ body {
   font-size: 30px;
 }
 
-.file-upload-image {
+.home .file-upload-image {
   max-height: 200px;
   max-width: 200px;
   margin: auto;
   padding: 20px;
 }
 
-.remove-image {
+.home .remove-image {
   width: 200px;
   margin: 0;
   color: #fff;
@@ -160,50 +386,50 @@ body {
   font-weight: 700;
 }
 
-.remove-image:hover {
+.home .remove-image:hover {
   background: #c13b2a;
   color: #ffffff;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.remove-image:active {
+.home .remove-image:active {
   border: 0;
   transition: all 0.2s ease;
 }
 
-ul,
-li {
+.home ul,
+.home li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.href-list {
+.home .href-list {
   border: 1px solid #ccc;
   padding: 10px;
   margin-top: 30px;
 }
 
-.href-list li {
+.home .href-list li {
   display: flex;
   margin-bottom: 20px;
 }
 
-.href-list .left {
+.home .href-list .left {
   width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.href-list .left img {
+.home .href-list .left img {
   max-width: 150px;
   max-height: 100px;
   display: block;
 }
 
-.href-list .right {
+.home .href-list .right {
   margin-left: 10px;
   font-size: 14px;
   background-color: mistyrose;

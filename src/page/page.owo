@@ -20,6 +20,11 @@
       uploadList: []
     },
     created: function () {
+      if (!userInfo) {
+        setTimeout(() => {
+          owo.go('login')
+        }, 0);
+      }
     },
     readURL: function () {
       const input = this.$target
@@ -33,7 +38,7 @@
             body: e.target.result,
             redirect: 'follow'
           };
-          fetch("https://going.run/upload", requestOptions)
+          fetch(`https://going.run/upload?username=${userInfo.username}&session=${userInfo.session}&userID=${userInfo.userID}`, requestOptions)
             .then(response => response.json())
             .then(result => {
               if (result.err == 0) {
