@@ -247,7 +247,7 @@ owo.script = {
             body: e.target.result,
             redirect: 'follow'
           };
-          fetch("https://going.run/upload?username=" + userInfo.username + "&session=" + userInfo.session + "&userID=" + userInfo.userID, requestOptions).then(function (response) {
+          fetch("https://going.run/upload?username=" + userInfo.username + "&session=" + userInfo.session + "&userID=" + userInfo.userID + "&path=\\\\&name=" + input.value, requestOptions).then(function (response) {
             return response.json();
           }).then(function (result) {
             if (result.err == 0) {
