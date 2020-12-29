@@ -1,5 +1,5 @@
-// Tue Dec 29 2020 00:53:03 GMT+0800 (GMT+08:00)
-var owo = {tool: {},state: {},event: {}};
+// Wed Dec 30 2020 01:09:59 GMT+0800 (GMT+08:00)
+var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {
   isIE: (window.navigator.userAgent.indexOf("MSIE") >= 1),
@@ -608,18 +608,17 @@ function View(routeList, viewName, entryDom, pageScript) {
 owo.state.routeBusy = false
 
 View.prototype.showIndex = function (ind) {
-  var viewName = this._viewName
   if (owo.state.routeBusy) return
   owo.state.routeBusy = true
   // 防止来回快速切换页面出问题
-  if (owo.state[viewName + '_changeing']) return
-  owo.state[viewName + '_changeing'] = true
+  if (owo.state[this._viewName + '_changeing']) return
+  owo.state[this._viewName + '_changeing'] = true
   this._activeIndex = this._activeIndex
   var oldRoute = this._list[this._activeIndex]
   // 如果新旧路由和旧路由是一样的那么不做处理
   if (this._activeIndex == ind) {
     oldRoute.$el.setAttribute('route-active', 'true')
-    owo.state[viewName + '_changeing'] = false
+    owo.state[this._viewName + '_changeing'] = false
     owo.state.routeBusy = false
     return
   }
@@ -630,25 +629,20 @@ View.prototype.showIndex = function (ind) {
   newRoute.owoPageInit()
   newRoute.handleEvent()
   if (oldRoute) {
-    function clearRoute () {
-      owo.state[viewName + '_changeing'] = false
-      oldRoute.$el.setAttribute('route-active', 'false')
-      owo.state.routeBusy = false
-    }
-    var animationValue = owo.state._animation || owo.globalAni
-    if (animationValue) {
-      
+    if (owo.state._animation || owo.globalAni) {
+      var animationValue = owo.state._animation || owo.globalAni
       if (newRoute._index > oldRoute._index) _owo.animation(oldRoute.$el, newRoute.$el, animationValue.in, animationValue.out)
       else _owo.animation(oldRoute.$el, newRoute.$el, animationValue.backIn, animationValue.backOut)
-      // 加个延时隐藏不然直接隐藏动画效果不好
-      setTimeout(clearRoute, 800);
     } else {
       _owo.animation(oldRoute.$el, newRoute.$el)
-      clearRoute()
     }
-    
+    // 加个延时隐藏不然直接隐藏动画效果不好
+    setTimeout(() => {
+      owo.state[this._viewName + '_changeing'] = false
+      oldRoute.$el.setAttribute('route-active', 'false')
+    }, 800);
   } else {
-    owo.state[viewName + '_changeing'] = false
+    owo.state[this._viewName + '_changeing'] = false
   }
   newRoute.$el.setAttribute('route-active', 'true')
   owo.onViewChange()
@@ -656,12 +650,11 @@ View.prototype.showIndex = function (ind) {
 }
 
 View.prototype.showName = function (name) {
-  var viewName = this._viewName
   if (owo.state.routeBusy) return
   owo.state.routeBusy = true
   // 防止来回快速切换页面出问题
-  if (owo.state[viewName + '_changeing']) return
-  owo.state[viewName + '_changeing'] = true
+  if (owo.state[this._viewName + '_changeing']) return
+  owo.state[this._viewName + '_changeing'] = true
 
   var oldRoute = this[this._activeName]
   var newRoute = this[name]
@@ -669,34 +662,32 @@ View.prototype.showName = function (name) {
   // 如果新旧路由和旧路由是一样的那么不做处理
   if (this._activeName == name) {
     oldRoute.$el.setAttribute('route-active', 'true')
-    owo.state[viewName + '_changeing'] = false
+    owo.state[this._viewName + '_changeing'] = false
     return
   }
   // 根据index
   this["_activeName"] = newRoute._name
   this["_activeIndex"] = newRoute._index
   // 如果没有旧路由，那么直接显示新路由就行
+  
   newRoute.owoPageInit()
   newRoute.handleEvent()
   if (oldRoute) {
-    function clearRoute () {
-      owo.state[viewName + '_changeing'] = false
-      oldRoute.$el.setAttribute('route-active', 'false')
-      owo.state.routeBusy = false
-    }
-    var animationValue = owo.state._animation || owo.globalAni
-    if (animationValue) {
+    if (owo.state._animation || owo.globalAni) {
+      var animationValue = owo.state._animation || owo.globalAni
       if (newRoute._index > oldRoute._index) _owo.animation(oldRoute.$el, newRoute.$el, animationValue.in, animationValue.out)
       else _owo.animation(oldRoute.$el, newRoute.$el, animationValue.backIn, animationValue.backOut)
-      // 加个延时隐藏不然直接隐藏动画效果不好
-      setTimeout(clearRoute, 800);
     } else {
       _owo.animation(oldRoute.$el, newRoute.$el)
-      clearRoute()
     }
-    
+    // 加个延时隐藏不然直接隐藏动画效果不好
+    setTimeout(() => {
+      owo.state[this._viewName + '_changeing'] = false
+      oldRoute.$el.setAttribute('route-active', 'false')
+      owo.state.routeBusy = false
+    }, 800);
   } else {
-    owo.state[viewName + '_changeing'] = false
+    owo.state[this._viewName + '_changeing'] = false
     owo.state.routeBusy = false
   }
   newRoute.$el.setAttribute('route-active', 'true')
@@ -1005,21 +996,4 @@ function switchPage (oldUrlParam, newUrlParam) {
 if (window.onhashchange) {window.onhashchange = _owo.hashchange;} else {window.onpopstate = _owo.hashchange;}
 // 执行页面加载完毕方法
 _owo.ready(_owo.showPage)
-
-
-// 这是用于代码调试的自动刷新代码，他不应该出现在正式上线版本!
-if ("WebSocket" in window) {
-  // 打开一个 web socket
-  if (!window._owo.ws) window._owo.ws = new WebSocket("ws://" + window.location.host)
-  window._owo.ws.onmessage = function (evt) { 
-    if (evt.data == 'reload') {
-      location.reload()
-    }
-  }
-  window._owo.ws.onclose = function() { 
-    console.info('与服务器断开连接')
-  }
-} else {
-  console.error('浏览器不支持WebSocket')
-}
 

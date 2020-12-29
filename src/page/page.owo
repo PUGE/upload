@@ -25,20 +25,32 @@
           owo.go('login')
         }, 0);
       }
+      // 获取用户数据
+      fetch(`https://going.run/upload?route=getInfo&username=${userInfo.username}&session=${userInfo.session}&userID=${userInfo.userID}`, {method: 'GET'})
+        .then(response => response.json())
+        .then(result => {
+          if (result.err == 0) {
+            console.log(result)
+          }
+        })
+        .catch(error => console.log('error', error));
     },
     readURL: function () {
       const input = this.$target
-      console.log(this)
       if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload =(e) => {
           // 上传
           var requestOptions = {
             method: 'POST',
-            body: e.target.result,
+            body: JSON.stringify({
+              name: getFileName(input.value),
+              data: e.target.result,
+              path: '\\'
+            }),
             redirect: 'follow'
           };
-          fetch(`https://going.run/upload?username=${userInfo.username}&session=${userInfo.session}&userID=${userInfo.userID}&path=\\&name=${input.value}`, requestOptions)
+          fetch(`https://going.run/upload?route=uploda&username=${userInfo.username}&session=${userInfo.session}&userID=${userInfo.userID}`, requestOptions)
             .then(response => response.json())
             .then(result => {
               if (result.err == 0) {
