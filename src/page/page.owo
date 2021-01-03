@@ -12,12 +12,18 @@
           img(src="{value.url}")
         .right
           span {value.url}
+    ul.my-file.clear
+      li(o-for="this.data.myFileList")
+        a(href="{value.md5}" target="_blank")
+          .file-icon &#xe621;
+          .name {value.name}
 </template>
 
 <script>
   module.exports = {
     data: {
-      uploadList: []
+      uploadList: [],
+      myFileList: []
     },
     created: function () {
       if (!userInfo) {
@@ -31,6 +37,10 @@
         .then(result => {
           if (result.err == 0) {
             console.log(result)
+            this.data.myFileList = result.value
+            setTimeout(() => {
+              this.handleEvent(this, this.query('.my-file'))
+            }, 100);
           }
         })
         .catch(error => console.log('error', error));
@@ -234,5 +244,35 @@ ul, li{
   padding: 5px;
   width: 410px;
   color: #333;
+}
+.my-file {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  padding: 10px;
+  a {
+    display: block;
+  }
+  li {
+    float: left;
+    width: 80px;
+    cursor: pointer;
+  }
+  .file-icon {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: lightsalmon;
+    height: 60px;
+    line-height: 60px;
+  }
+  .name {
+    line-height: 16px;
+    display: block;
+    width: 80px;
+    overflow: hidden;
+    word-break: break-all;
+    text-align: center;
+    color: #333;
+  }
 }
 </style>

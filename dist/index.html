@@ -19,7 +19,7 @@
   <meta name="catalogs" content="{TAG_83943_TAG}" />
 
   <!-- 页面主样式文件 -->
-  <link charset="utf-8" rel="stylesheet" href="./static/css/owo.core.p3fdz9qjzsk.css">
+  <link charset="utf-8" rel="stylesheet" href="./static/css/owo.core.1v5ap5mdcqf.css">
 
   <!-- 附属css文件 -->
   <link rel="stylesheet" href="./static/css/main.css" charset="utf-8">
@@ -87,11 +87,19 @@
           </div>
         </li>
       </ul>
+      <ul class="my-file clear">
+        <li o-for="this.data.myFileList">
+          <a href="{value.md5}" target="_blank">
+            <div class="file-icon"></div>
+            <div class="name">{value.name}</div>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 
   <!-- 框架script文件 -->
-  <script src="./static/js/owo.core.p3fdz9qjzsk.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/owo.core.1v5ap5mdcqf.js" type="text/javascript" charset="UTF-8"></script>
   <script type="text/javascript" charset="UTF-8">
     // 模块 login 的script代码
     var appType = 'upload';
@@ -282,9 +290,12 @@
       },
       "page": {
         "data": {
-          "uploadList": []
+          "uploadList": [],
+          "myFileList": []
         },
         "created": function created() {
+          var _this = this;
+
           if (!userInfo) {
             setTimeout(function() {
               owo.go('login');
@@ -299,13 +310,17 @@
           }).then(function(result) {
             if (result.err == 0) {
               console.log(result);
+              _this.data.myFileList = result.value;
+              setTimeout(function() {
+                _this.handleEvent(_this, _this.query('.my-file'));
+              }, 100);
             }
           })["catch"](function(error) {
             return console.log('error', error);
           });
         },
         "readURL": function readURL() {
-          var _this = this;
+          var _this2 = this;
 
           var input = this.$target;
 
@@ -327,15 +342,15 @@
                 return response.json();
               }).then(function(result) {
                 if (result.err == 0) {
-                  _this.data.uploadList.push({
+                  _this2.data.uploadList.push({
                     name: input.files[0].name,
                     url: result.url
                   });
 
-                  console.log(_this.data.uploadList); // creatHTML()
+                  console.log(_this2.data.uploadList); // creatHTML()
 
                   setTimeout(function() {
-                    _this.handleEvent(_this, _this.query('.href-list'));
+                    _this2.handleEvent(_this2, _this2.query('.href-list'));
                   }, 0);
                 }
               })["catch"](function(error) {

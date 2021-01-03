@@ -438,3 +438,38 @@ li {
   color: #333;
 }
 
+.home .my-file {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.home .my-file a {
+  display: block;
+}
+
+.home .my-file li {
+  float: left;
+  width: 80px;
+  cursor: pointer;
+}
+
+.home .my-file .file-icon {
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  color: lightsalmon;
+  height: 60px;
+  line-height: 60px;
+}
+
+.home .my-file .name {
+  line-height: 16px;
+  display: block;
+  width: 80px;
+  overflow: hidden;
+  word-break: break-all;
+  text-align: center;
+  color: #333;
+}
+

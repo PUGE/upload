@@ -82,3 +82,21 @@ h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, bu
 .pc .no-pc, .phone .no-phone {
   display: none;
 }
+
+@font-face {
+  font-family: 'file';  /* project id 2306215 */
+  src: url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.eot');
+  src: url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2306215_rj4m2u8t2so.svg#file') format('svg');
+}
+
+.file-icon {
+  font-family: "file";
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  user-select: none;
+}
