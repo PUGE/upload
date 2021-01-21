@@ -1,11 +1,6 @@
 <template lang="pug">
-.home
+.home(o-dragover="dragover")
   .file-upload
-    button.file-upload-btn(o-tap="uploadFile") 添加图片
-    .image-upload-wrap(o-dragover="dragover")
-      input.file-upload-input(type="file" o-change="readURL" accept="image/*")
-      .drag-text
-        h3 拖拽或者选择图片
     ul.href-list
       li(o-for="this.data.uploadList")
         .left
@@ -17,6 +12,12 @@
         a(href="{value.md5}" target="_blank")
           .file-icon &#xe621;
           .name {value.name}
+  .image-upload-wrap
+    input.file-upload-input(type="file" o-change="readURL" accept="image/*")
+    .drag-text
+      h3 拖拽或者选择图片
+  .upload-bottom(o-tap="uploadFile" o-hover="grow" title="上传文件")
+    <svg t="1611193782309" class="icon" viewBox="0 0 1433 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3749" width="64" height="64"><path d="M1153.92512 384.32768c0-198.94272-159.1296-358.11328-352.41984-358.11328-136.3968 0-255.7952 79.58528-312.64768 193.24928-34.11968-11.34592-62.50496-17.03936-90.9312-17.03936-125.09184 0-221.71648 102.31808-221.71648 221.67552 0 22.7328 5.69344 39.81312 11.38688 56.85248-108.01152 39.81312-187.5968 136.3968-187.5968 255.7952a266.8544 266.8544 0 0 0 267.18208 267.18208h267.14112v-267.18208H358.11328l358.11328-358.11328 358.11328 358.11328h-176.20992v267.18208h267.18208v-5.69344c147.78368-22.7328 267.18208-153.47712 267.18208-306.95424-11.38688-159.17056-130.74432-289.91488-278.528-306.95424z" fill="#F29440" p-id="3750"></path></svg>
 </template>
 
 <script>
@@ -102,9 +103,9 @@ body {
 
 .file-upload {
   background-color: #ffffff;
-  width: 600px;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  height: 100%;
 }
 
 .file-upload-btn {
@@ -151,7 +152,6 @@ body {
 }
 
 .image-upload-wrap {
-  margin-top: 20px;
   border: 4px dashed #1FB264;
   position: relative;
 }
@@ -274,5 +274,11 @@ ul, li{
     text-align: center;
     color: #333;
   }
+}
+.upload-bottom {
+  position: fixed;
+  right: 5%;
+  bottom: 10%;
+  cursor: pointer;
 }
 </style>

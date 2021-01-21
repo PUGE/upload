@@ -1,4 +1,4 @@
-// Sun Jan 03 2021 23:09:59 GMT+0800 (GMT+08:00)
+// Thu Jan 21 2021 16:24:56 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},event: {}};
 /* 方法合集 */
 var _owo = {
@@ -529,11 +529,12 @@ function handleEvent (moudleScript, enterDom) {
         tempNode.setAttribute('otemp-for', forValue)
         var temp = tempNode.outerHTML
         var value = forEle[key];
+        if (value == undefined) continue
         var tempCopy = temp
         // 获取模板插值
         var varList = _owo.cutStringArray(tempCopy, '{', '}')
         varList.forEach(element => {
-          var forValue = new Function('value', 'key', 'return ' + element)
+          const forValue = new Function('value', 'key', 'if (' + element + ') {return ' + element + '} else {return ""}')
           // 默认变量
           tempCopy = tempCopy.replace('{' + element + '}', forValue.apply(moudleScript, [value, key]))
         })
@@ -670,6 +671,7 @@ View.prototype.showName = function (name) {
   if (this._activeName == name) {
     oldRoute.$el.setAttribute('route-active', 'true')
     owo.state[viewName + '_changeing'] = false
+    owo.state.routeBusy = false
     return
   }
   // 根据index
@@ -1005,4 +1007,21 @@ function switchPage (oldUrlParam, newUrlParam) {
 if (window.onhashchange) {window.onhashchange = _owo.hashchange;} else {window.onpopstate = _owo.hashchange;}
 // 执行页面加载完毕方法
 _owo.ready(_owo.showPage)
+
+
+// 这是用于代码调试的自动刷新代码，他不应该出现在正式上线版本!
+if ("WebSocket" in window) {
+  // 打开一个 web socket
+  if (!window._owo.ws) window._owo.ws = new WebSocket("ws://" + window.location.host)
+  window._owo.ws.onmessage = function (evt) { 
+    if (evt.data == 'reload') {
+      location.reload()
+    }
+  }
+  window._owo.ws.onclose = function() { 
+    console.info('与服务器断开连接')
+  }
+} else {
+  console.error('浏览器不支持WebSocket')
+}
 
