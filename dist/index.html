@@ -29,7 +29,7 @@
     <!-- 页面[login]-->
     <div class="login page" template="login" style="display: none;"><div class="router" view="loginContent"><div class="view-login" route="login"><div class="image-box"><img src="https://cunchu.site/puge/login/image-box.png"></div><div class="hellow-text">嗨，欢迎回来!</div><div class="user-name-bar input-bar"><img class="bar-icon" src="https://cunchu.site/puge/login/user.png"><input type="text" o-value="this.data.username" placeholder="用户名"></div><div class="pass-word-bar input-bar"><img class="bar-icon" src="https://cunchu.site/puge/login/password.png"><input type="password" o-value="this.data.password" placeholder="密码"></div><div class="button-box"><div class="button" o-tap="login" o-hover="radial-out">登录</div><div class="button" o-hover="radial-out" style=" background-color: burlywood;" go="/view-loginContent=register">注册</div></div><div class="tool-bar"><div class="left"></div><div class="right" go-route="">忘记密码</div></div></div><div class="view-register" route="register"><img class="bg-1" src="https://cunchu.site/puge/login/art.png"><p>欢迎注册PUGE账号</p><input class="register-input" type="text" o-value="this.data.registerusername" placeholder="用户名"><input class="register-input" type="password" o-value="this.data.registerPassWord" placeholder="密码"><input class="register-input" type="password" o-value="this.data.registerPassWordR" placeholder="确认密码"><div class="mini-box clear"><input class="register-input" type="text" o-value="this.data.registerPhone" placeholder="手机号码"><div class="button" o-tap="sendSMS">发送验证码</div></div><input class="register-input" type="text" o-value="this.data.registerCode" placeholder="验证码"><div class="button" o-tap="register">注册</div></div></div></div>
     <!-- 页面[page]-->
-    <div class="home page" o-dragover="dragover" template="page" style="display: none;"><div class="file-upload"><ul class="href-list"><li o-for="this.data.uploadList"><div class="left"><img src="{value.url}"></div><div class="right"><span>{value.url}</span></div></li></ul><ul class="my-file clear"><li o-for="this.data.myFileList"><a href="{value.md5}" target="_blank"><div class="file-icon"></div><div class="name">{value.name}</div></a></li></ul></div><div class="image-upload-wrap"><input class="file-upload-input" type="file" o-change="readURL" accept="image/*"><div class="drag-text"><h3>拖拽或者选择图片</h3></div></div><div class="upload-bottom" o-tap="uploadFile" o-hover="grow" title="上传文件"><svg t="1611193782309" class="icon" viewBox="0 0 1433 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3749" width="64" height="64"><path d="M1153.92512 384.32768c0-198.94272-159.1296-358.11328-352.41984-358.11328-136.3968 0-255.7952 79.58528-312.64768 193.24928-34.11968-11.34592-62.50496-17.03936-90.9312-17.03936-125.09184 0-221.71648 102.31808-221.71648 221.67552 0 22.7328 5.69344 39.81312 11.38688 56.85248-108.01152 39.81312-187.5968 136.3968-187.5968 255.7952a266.8544 266.8544 0 0 0 267.18208 267.18208h267.14112v-267.18208H358.11328l358.11328-358.11328 358.11328 358.11328h-176.20992v267.18208h267.18208v-5.69344c147.78368-22.7328 267.18208-153.47712 267.18208-306.95424-11.38688-159.17056-130.74432-289.91488-278.528-306.95424z" fill="#F29440" p-id="3750"></path></svg></div></div>
+    <div class="home page" o-dragover="dragover" template="page" style="display: none;"><div class="file-upload"><ul class="my-file clear"><li o-for="this.data.myFileList"><a href="{value.md5}" target="_blank"><div class="file-icon"></div><div class="name">{value.name}</div></a></li></ul></div><div class="image-upload-wrap" o-dragleave="dragleave"><input class="file-upload-input" type="file" o-change="readURL" accept="image/*"><div class="drag-text"><h3>拖动到此处上传</h3></div></div><div class="upload-bottom" o-tap="uploadFile" o-hover="grow" title="上传文件"><svg t="1611193782309" class="icon" viewBox="0 0 1433 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3749" width="64" height="64"><path d="M1153.92512 384.32768c0-198.94272-159.1296-358.11328-352.41984-358.11328-136.3968 0-255.7952 79.58528-312.64768 193.24928-34.11968-11.34592-62.50496-17.03936-90.9312-17.03936-125.09184 0-221.71648 102.31808-221.71648 221.67552 0 22.7328 5.69344 39.81312 11.38688 56.85248-108.01152 39.81312-187.5968 136.3968-187.5968 255.7952a266.8544 266.8544 0 0 0 267.18208 267.18208h267.14112v-267.18208H358.11328l358.11328-358.11328 358.11328 358.11328h-176.20992v267.18208h267.18208v-5.69344c147.78368-22.7328 267.18208-153.47712 267.18208-306.95424-11.38688-159.17056-130.74432-289.91488-278.528-306.95424z" fill="#F29440" p-id="3750"></path></svg></div></div>
     
 <!-- 框架script文件 -->
 <script src="./static/js/owo.core.js" type="text/javascript" charset="UTF-8"></script>
@@ -254,6 +254,8 @@ owo.script = {
     "readURL": function readURL() {
       var _this2 = this;
 
+      console.log('上传新文件');
+      this.query('.image-upload-wrap').classList.remove('image-dropping');
       var input = this.$target;
 
       if (input.files && input.files[0]) {
@@ -294,9 +296,11 @@ owo.script = {
       }
     },
     "dragover": function dragover() {
+      console.log('拖拽!');
       this.query('.image-upload-wrap').classList.add('image-dropping');
     },
     "dragleave": function dragleave() {
+      console.log('取消拖拽!');
       this.query('.image-upload-wrap').classList.remove('image-dropping');
     },
     "uploadFile": function uploadFile() {
