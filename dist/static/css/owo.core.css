@@ -53,233 +53,7 @@ ul {
 li {
   list-style: none;
 }
-/* Radial Out */
-[o-hover="radial-out"] {
-  display: inline-block;
-  vertical-align: middle;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  overflow: hidden;
-  background: #e1e1e1;
-  transition-property: color;
-  transition-duration: 0.3s;
-}
-[o-hover="radial-out"]:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #2098D1;
-  border-radius: 100%;
-  transform: scale(0);
-  transition-property: transform;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-}
-[o-hover="radial-out"]:hover, [o-hover="radial-out"]:focus, [o-hover="radial-out"]:active {
-  color: white;
-}
-[o-hover="radial-out:hover"]:before, [o-hover="radial-out:focus"]:before, [o-hover="radial-out:active"]:before {
-  transform: scale(2);
-}
-
-.login {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-}
-
-.login .login-title-bar {
-  display: flex;
-  justify-content: space-between;
-  height: 45px;
-  align-items: center;
-}
-
-.login .login-title-bar .back {
-  width: 12px;
-  margin: 13px;
-  display: block;
-}
-
-.login .login-title-bar .register {
-  font-size: 20px;
-  line-height: 45px;
-  padding-right: 10px;
-}
-
-.login .login-title-bar .active {
-  opacity: 0;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-
-.login .button-box {
-  margin-top: 35px;
-}
-
-.login .image-box img {
-  height: 160px;
-  display: block;
-  margin: 40px auto;
-}
-
-.login .hellow-text {
-  color: #5fccff;
-  font-size: 22px;
-  width: 100%;
-  text-align: center;
-  line-height: 40px;
-}
-
-.login .button {
-  background-color: #5fccff;
-  line-height: 50px;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  width: 84%;
-  margin: 0 auto;
-  border-radius: 25px;
-  display: block;
-  margin-top: 15px;
-}
-
-.login input {
-  border: none;
-  display: block;
-  width: 83%;
-  font-size: 18px;
-  border-radius: 25px;
-  outline: none;
-}
-
-.login .view-login input {
-  border: none;
-  background-color: transparent;
-  height: 100%;
-  padding-left: 17%;
-  display: block;
-  width: 83%;
-  font-size: 18px;
-  border-radius: 25px;
-  outline: none;
-}
-
-.login .view-login input:active {
-  box-shadow: 1px 1px 5px #ccc;
-}
-
-.login .view-login .input-bar {
-  background-color: #f7f8fa;
-  height: 50px;
-  border-radius: 25px;
-  width: 84%;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-}
-
-.login .view-login .input-bar .bar-icon {
-  width: 20px;
-  position: absolute;
-  left: 20px;
-  top: 0px;
-  bottom: 0;
-  margin: auto;
-}
-
-.login .tool-bar {
-  line-height: 50px;
-  display: flex;
-  justify-content: space-between;
-  width: 84%;
-  margin: 0 auto;
-  color: #262626;
-  font-size: 14px;
-}
-
-.login .router {
-  height: calc(100% - 45px);
-  overflow: hidden;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.login .router [route] {
-  width: 100%;
-  height: 100%;
-}
-
-.login .view-register {
-  width: 100%;
-  height: 100%;
-}
-
-.login .view-register .bg-1 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 47vw;
-}
-
-.login .view-register p {
-  line-height: 40px;
-  font-size: 23px;
-  padding-top: 60px;
-  z-index: 99;
-  background-image: url(https://cunchu.site/puge/login/Signup.png);
-  background-size: 91vw;
-  background-repeat: no-repeat;
-  background-position-y: 15px;
-  padding-left: 20px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.login .view-register .register-input {
-  height: 50px;
-  background-color: #f7f7fb;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 0 5%;
-  width: 74%;
-}
-
-.login .view-register .button {
-  background-color: #fa4169;
-}
-
-.login .mini-box {
-  width: 84%;
-  margin: 0 auto;
-}
-
-.login .mini-box .button {
-  background-color: #009fe9;
-  float: right;
-  width: 24%;
-  display: block;
-  font-size: 14px;
-  height: 40px;
-  line-height: 40px;
-  margin-top: 23px;
-}
-
-.login .mini-box .register-input {
-  float: left;
-  width: 60%;
-  display: block;
-}[o-hover="grow"] {
+[o-hover="grow"] {
   display: inline-block;
   vertical-align: middle;
   transform: perspective(1px) translateZ(0);
@@ -291,19 +65,19 @@ li {
   transform: scale(1.1);
 }
 
-.home body {
+body {
   font-family: sans-serif;
   background-color: #eeeeee;
 }
 
-.home .file-upload {
+.file-upload {
   background-color: #ffffff;
   width: 100%;
   margin: 0 auto;
   height: 100%;
 }
 
-.home .file-upload-btn {
+.file-upload-btn {
   width: 100%;
   margin: 0;
   color: #fff;
@@ -318,24 +92,24 @@ li {
   font-weight: 700;
 }
 
-.home .file-upload-btn:hover {
+.file-upload-btn:hover {
   background: #1AA059;
   color: #ffffff;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.home .file-upload-btn:active {
+.file-upload-btn:active {
   border: 0;
   transition: all 0.2s ease;
 }
 
-.home .file-upload-content {
+.file-upload-content {
   display: none;
   text-align: center;
 }
 
-.home .file-upload-input {
+.file-upload-input {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -346,27 +120,27 @@ li {
   cursor: pointer;
 }
 
-.home .image-upload-wrap {
+.image-upload-wrap {
   border: 4px dashed #1FB264;
   position: relative;
 }
 
-.home .image-dropping,
-.home .image-upload-wrap:hover {
+.image-dropping,
+.image-upload-wrap:hover {
   background-color: #1FB264;
   border: 4px dashed #ffffff;
 }
 
-.home .image-title-wrap {
+.image-title-wrap {
   padding: 0 15px 15px 15px;
   color: #222;
 }
 
-.home .drag-text {
+.drag-text {
   text-align: center;
 }
 
-.home .drag-text h3 {
+.drag-text h3 {
   font-weight: 100;
   text-transform: uppercase;
   color: #15824B;
@@ -374,14 +148,14 @@ li {
   font-size: 30px;
 }
 
-.home .file-upload-image {
+.file-upload-image {
   max-height: 200px;
   max-width: 200px;
   margin: auto;
   padding: 20px;
 }
 
-.home .remove-image {
+.remove-image {
   width: 200px;
   margin: 0;
   color: #fff;
@@ -396,50 +170,50 @@ li {
   font-weight: 700;
 }
 
-.home .remove-image:hover {
+.remove-image:hover {
   background: #c13b2a;
   color: #ffffff;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.home .remove-image:active {
+.remove-image:active {
   border: 0;
   transition: all 0.2s ease;
 }
 
-.home ul,
-.home li {
+ul,
+li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.home .href-list {
+.href-list {
   border: 1px solid #ccc;
   padding: 10px;
   margin-top: 30px;
 }
 
-.home .href-list li {
+.href-list li {
   display: flex;
   margin-bottom: 20px;
 }
 
-.home .href-list .left {
+.href-list .left {
   width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.home .href-list .left img {
+.href-list .left img {
   max-width: 150px;
   max-height: 100px;
   display: block;
 }
 
-.home .href-list .right {
+.href-list .right {
   margin-left: 10px;
   font-size: 14px;
   background-color: mistyrose;
@@ -448,23 +222,23 @@ li {
   color: #333;
 }
 
-.home .my-file {
+.my-file {
   border: 1px solid #ccc;
   margin-top: 10px;
   padding: 10px;
 }
 
-.home .my-file a {
+.my-file a {
   display: block;
 }
 
-.home .my-file li {
+.my-file li {
   float: left;
   width: 80px;
   cursor: pointer;
 }
 
-.home .my-file .file-icon {
+.my-file .file-icon {
   width: 100%;
   text-align: center;
   font-size: 40px;
@@ -473,7 +247,7 @@ li {
   line-height: 60px;
 }
 
-.home .my-file .name {
+.my-file .name {
   line-height: 16px;
   display: block;
   width: 80px;
@@ -483,7 +257,7 @@ li {
   color: #333;
 }
 
-.home .upload-bottom {
+.upload-bottom {
   position: fixed;
   right: 5%;
   bottom: 10%;

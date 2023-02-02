@@ -75,11 +75,6 @@
 	],
 	"pageList": [
 		{
-			"name": "login",
-			"src": "https://template.owo.ink/8eccb1ecdd6e3ae9.owo",
-			"type": "page"
-		},
-		{
 			"name": "page",
 			"src": "./src/page/page.owo",
 			"type": "page"
